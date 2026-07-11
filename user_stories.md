@@ -1,3 +1,4 @@
+## Admin User Stories
 # Admin User Story 1
 
 **Title:**
@@ -96,6 +97,7 @@
 
 * Procedure should work on the latest database.
 
+## Patient User Stories
 # Patient User Story 1
 
 **Title:**
@@ -214,7 +216,7 @@
 
 * List should be sorted by date.
 
-
+## Doctor User Stories
 # Doctor User Story 1
 
 **Title:**
