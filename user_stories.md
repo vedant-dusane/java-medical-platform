@@ -1,97 +1,97 @@
-# User Story 1 – Admin Manages Doctors
+# Admin User Story 1
 
 **Title:**
-*As an admin, I want to add and manage doctor accounts, so that only authorized doctors can access the system.*
+*As an admin, I want to log into the portal with my username and password, so that I can securely manage the platform.*
 
 **Acceptance Criteria:**
 
-1. The admin can add a new doctor account.
-2. The admin can edit or delete doctor details.
-3. Changes are saved successfully in the database.
+1. Admin can enter valid credentials.
+2. System authenticates the admin.
+3. Admin is redirected to the dashboard.
+
+**Priority:** High
+**Story Points:** 3
+
+**Notes:**
+
+* Invalid credentials should display an error message.
+
+---
+
+# Admin User Story 2
+
+**Title:**
+*As an admin, I want to log out of the portal, so that I can protect system access.*
+
+**Acceptance Criteria:**
+
+1. Admin can log out from any page.
+2. User session is terminated.
+3. Login is required to access the dashboard again.
+
+**Priority:** High
+**Story Points:** 2
+
+**Notes:**
+
+* Session should expire after logout.
+
+---
+
+# Admin User Story 3
+
+**Title:**
+*As an admin, I want to add doctors to the portal, so that they can provide appointments to patients.*
+
+**Acceptance Criteria:**
+
+1. Admin can enter doctor details.
+2. Doctor account is created successfully.
+3. Doctor appears in the doctors list.
 
 **Priority:** High
 **Story Points:** 5
 
 **Notes:**
 
-* Only admins have permission to manage doctor accounts.
+* Email should be unique.
 
 ---
 
-# User Story 2 – Patient Books an Appointment
+# Admin User Story 4
 
 **Title:**
-*As a patient, I want to book an appointment with a doctor, so that I can receive medical consultation.*
+*As an admin, I want to delete a doctor's profile from the portal, so that inactive doctors are removed from the system.*
 
 **Acceptance Criteria:**
 
-1. The patient can view available doctors and time slots.
-2. The patient can select a preferred date and time.
-3. The appointment is confirmed after successful booking.
-
-**Priority:** High
-**Story Points:** 5
-
-**Notes:**
-
-* A time slot cannot be double-booked.
-
----
-
-# User Story 3 – Patient Manages Appointments
-
-**Title:**
-*As a patient, I want to reschedule or cancel my appointment, so that I can manage my schedule.*
-
-**Acceptance Criteria:**
-
-1. The patient can view upcoming appointments.
-2. The patient can reschedule an appointment to an available slot.
-3. The patient can cancel an appointment before its scheduled time.
+1. Admin can select a doctor.
+2. System asks for confirmation.
+3. Doctor profile is removed successfully.
 
 **Priority:** Medium
 **Story Points:** 3
 
 **Notes:**
 
-* Cancelled slots become available for other patients.
+* Existing appointments should be handled appropriately.
 
 ---
 
-# User Story 4 – Doctor Manages Availability
+# Admin User Story 5
 
 **Title:**
-*As a doctor, I want to set my available appointment slots, so that patients can book appointments during my working hours.*
+*As an admin, I want to run a stored procedure in MySQL CLI to view the number of appointments per month, so that I can track system usage.*
 
 **Acceptance Criteria:**
 
-1. The doctor can add available time slots.
-2. The doctor can edit or remove existing slots.
-3. Only available slots are visible to patients.
+1. Stored procedure executes successfully.
+2. Monthly appointment statistics are displayed.
+3. Results are accurate.
 
-**Priority:** High
-**Story Points:** 5
-
-**Notes:**
-
-* Existing appointments cannot be overwritten.
-
----
-
-# User Story 5 – Doctor Views Appointments
-
-**Title:**
-*As a doctor, I want to view my scheduled appointments, so that I can prepare for patient consultations.*
-
-**Acceptance Criteria:**
-
-1. The doctor can view all upcoming appointments.
-2. Appointment details include patient name, date, and time.
-3. The appointment list updates automatically after changes.
-
-**Priority:** High
+**Priority:** Medium
 **Story Points:** 3
 
 **Notes:**
 
-* Doctors can only view their own appointments.
+* Procedure should work on the latest database.
