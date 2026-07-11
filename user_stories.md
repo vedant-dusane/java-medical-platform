@@ -1,11 +1,97 @@
-# Admin User Stories
+# User Story 1 – Admin Manages Doctors
 
-As an admin, I want to add and manage doctor and patient accounts so that only authorized users can access the system. I also want to update or remove accounts whenever necessary to keep the platform organized.As an admin, I want to view and manage all appointments so that I can monitor the scheduling process. I also want to generate reports to track the overall performance and usage of the system.
+**Title:**
+*As an admin, I want to add and manage doctor accounts, so that only authorized doctors can access the system.*
 
-# Patient User Stories
+**Acceptance Criteria:**
 
-As a patient, I want to create an account and log in so that I can securely access the appointment system. I also want to search for doctors based on their specialization and availability.As a patient, I want to book, reschedule, or cancel appointments according to my needs. I also want to view my appointment history so that I can keep track of my medical visits.
+1. The admin can add a new doctor account.
+2. The admin can edit or delete doctor details.
+3. Changes are saved successfully in the database.
 
-# Doctor User Stories
+**Priority:** High
+**Story Points:** 5
 
-As a doctor, I want to log in securely and manage my profile so that patients can view my information. I also want to set my available appointment slots for booking. As a doctor, I want to view my scheduled appointments and update consultation details after each visit. I also want to accept, reschedule, or cancel appointments whenever required.
+**Notes:**
+
+* Only admins have permission to manage doctor accounts.
+
+---
+
+# User Story 2 – Patient Books an Appointment
+
+**Title:**
+*As a patient, I want to book an appointment with a doctor, so that I can receive medical consultation.*
+
+**Acceptance Criteria:**
+
+1. The patient can view available doctors and time slots.
+2. The patient can select a preferred date and time.
+3. The appointment is confirmed after successful booking.
+
+**Priority:** High
+**Story Points:** 5
+
+**Notes:**
+
+* A time slot cannot be double-booked.
+
+---
+
+# User Story 3 – Patient Manages Appointments
+
+**Title:**
+*As a patient, I want to reschedule or cancel my appointment, so that I can manage my schedule.*
+
+**Acceptance Criteria:**
+
+1. The patient can view upcoming appointments.
+2. The patient can reschedule an appointment to an available slot.
+3. The patient can cancel an appointment before its scheduled time.
+
+**Priority:** Medium
+**Story Points:** 3
+
+**Notes:**
+
+* Cancelled slots become available for other patients.
+
+---
+
+# User Story 4 – Doctor Manages Availability
+
+**Title:**
+*As a doctor, I want to set my available appointment slots, so that patients can book appointments during my working hours.*
+
+**Acceptance Criteria:**
+
+1. The doctor can add available time slots.
+2. The doctor can edit or remove existing slots.
+3. Only available slots are visible to patients.
+
+**Priority:** High
+**Story Points:** 5
+
+**Notes:**
+
+* Existing appointments cannot be overwritten.
+
+---
+
+# User Story 5 – Doctor Views Appointments
+
+**Title:**
+*As a doctor, I want to view my scheduled appointments, so that I can prepare for patient consultations.*
+
+**Acceptance Criteria:**
+
+1. The doctor can view all upcoming appointments.
+2. Appointment details include patient name, date, and time.
+3. The appointment list updates automatically after changes.
+
+**Priority:** High
+**Story Points:** 3
+
+**Notes:**
+
+* Doctors can only view their own appointments.
