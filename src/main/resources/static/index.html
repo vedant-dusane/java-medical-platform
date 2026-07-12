@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Smart Clinic – Select Your Role</title>
+    <link rel="icon" type="image/png" href="./assets/images/logo/logo.png" />
+    <link rel="stylesheet" href="./assets/css/index.css" />
+    <link rel="stylesheet" href="./assets/css/style.css" />
+    <script src="./js/util.js" defer></script>
+    <script src="./js/render.js" defer></script>
+    <script src="./js/components/header.js" defer></script>
+    <script src="./js/components/footer.js" defer></script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="wrapper">
+        <!-- Header placeholder -->
+        <div id="header"></div>
+
+        <!-- Main content -->
+        <main class="main-content">
+          <div class="role-card">
+            <h2>Select Your Role</h2>
+            <p class="role-subtitle">Choose how you'd like to access the clinic system</p>
+            <div class="role-buttons">
+              <button
+                id="adminBtn"
+                class="dashboard-btn"
+                onclick="selectRole('admin')"
+              >
+                <span class="role-icon">🛡️</span>
+                Admin
+              </button>
+              <button
+                id="doctorBtn"
+                class="dashboard-btn"
+                onclick="selectRole('doctor')"
+              >
+                <span class="role-icon">🩺</span>
+                Doctor
+              </button>
+              <button
+                id="patientBtn"
+                class="dashboard-btn"
+                onclick="selectRole('patient')"
+              >
+                <span class="role-icon">🏥</span>
+                Patient
+              </button>
+            </div>
+          </div>
+        </main>
+
+        <!-- Footer placeholder -->
+        <div id="footer"></div>
+      </div>
+    </div>
+
+    <!-- Modal -->
+    <div id="modal" class="modal">
+      <div class="modal-content">
+        <span id="closeModal" class="close">&times;</span>
+        <div id="modal-body"></div>
+      </div>
+    </div>
+
+    <script type="module" src="./js/services/index.js" defer></script>
+  </body>
+</html>

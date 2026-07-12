@@ -1,0 +1,140 @@
+/* ── Doctor Card Actions ─────────────────────────────────── */
+.card-actions {
+  background: #014d4e;
+  text-align: center;
+  padding: 12px;
+  border-radius: 0 0 10px 10px;
+  transition: background 0.2s;
+}
+
+.card-actions:hover {
+  background: #013535;
+}
+
+.card-actions button {
+  background: transparent;
+  color: #fff;
+  border: 1px solid rgba(255,255,255,0.45);
+  padding: 8px 20px;
+  border-radius: 5px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.card-actions button:hover {
+  background: rgba(255,255,255,0.12);
+  border-color: #fff;
+}
+
+/* ── Ripple Click Effect ─────────────────────────────────── */
+.ripple-overlay {
+  position: fixed;
+  border-radius: 50%;
+  width: 10px;
+  height: 10px;
+  background: rgba(1, 93, 94, 0.35);
+  transform: scale(0);
+  pointer-events: none;
+  transition: transform 0.6s ease, opacity 0.6s ease;
+  opacity: 1;
+  z-index: 9999;
+}
+
+.ripple-overlay.active {
+  transform: scale(40);
+  opacity: 0;
+}
+
+/* ── Bottom Slide-in Booking Modal ───────────────────────── */
+.modalApp {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%) translateY(100%);
+  width: 100%;
+  max-width: 540px;
+  background: #fff;
+  padding: 32px 28px;
+  border-radius: 16px 16px 0 0;
+  box-shadow: 0 -6px 30px rgba(0,0,0,0.18);
+  z-index: 1100;
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.modalApp.active {
+  transform: translateX(-50%) translateY(0);
+}
+
+/* ── Form Fields inside Booking Modal ────────────────────── */
+.modalApp input,
+.modalApp select {
+  display: block;
+  width: 90%;
+  margin: 10px auto;
+  padding: 11px 14px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.modalApp input:focus,
+.modalApp select:focus {
+  border-color: #015c5d;
+}
+
+.modalApp h3 {
+  text-align: center;
+  color: #014d4e;
+  margin-bottom: 16px;
+  font-size: 1.15rem;
+}
+
+/* ── Booking Confirm Button ──────────────────────────────── */
+.book-confirm-btn {
+  display: block;
+  width: 90%;
+  margin: 18px auto 0;
+  padding: 12px;
+  background: #014d4e;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: filter 0.2s, transform 0.15s;
+}
+
+.book-confirm-btn:hover {
+  filter: brightness(1.2);
+  transform: translateY(-1px);
+}
+
+/* ── Overlay Backdrop for booking modal ──────────────────── */
+.modalApp-backdrop {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+  z-index: 1090;
+}
+
+.modalApp-backdrop.active {
+  display: block;
+}
+
+/* ── Responsive ──────────────────────────────────────────── */
+@media (max-width: 600px) {
+  .modalApp {
+    padding: 24px 16px;
+  }
+
+  .modalApp input,
+  .modalApp select,
+  .book-confirm-btn {
+    width: 100%;
+  }
+}

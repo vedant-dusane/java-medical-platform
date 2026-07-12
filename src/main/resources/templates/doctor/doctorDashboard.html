@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Doctor Dashboard – Smart Clinic</title>
+    <link rel="icon" type="image/png" th:href="@{/assets/images/logo/logo.png}" />
+    <link rel="stylesheet" th:href="@{/assets/css/adminDashboard.css}" />
+    <link rel="stylesheet" th:href="@{/assets/css/doctorDashboard.css}" />
+    <link rel="stylesheet" th:href="@{/assets/css/style.css}" />
+    <script th:src="@{/js/render.js}" defer></script>
+    <script th:src="@{/js/util.js}" defer></script>
+    <script th:src="@{/js/components/header.js}" defer></script>
+    <script th:src="@{/js/components/footer.js}" defer></script>
+    <script th:src="@{/js/components/patientRows.js}" defer></script>
+    <script type="module" th:src="@{/js/patientRecordServices.js}" defer></script>
+    <script type="module" th:src="@{/js/doctorDashboard.js}" defer></script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="wrapper">
+        <!-- Header placeholder -->
+        <div id="header"></div>
+
+        <main class="main-content">
+          <!-- Search and filter controls -->
+          <div class="search-filter-wrapper">
+            <input
+              type="text"
+              id="searchBar"
+              class="input-field"
+              placeholder="Search patient by name"
+            />
+            <div class="filter-wrapper">
+              <button id="todayBtn" class="dashboard-btn adminBtn">
+                Today's Appointments
+              </button>
+              <input type="date" id="dateFilter" class="input-field" />
+            </div>
+          </div>
+
+          <!-- Patient appointments table -->
+          <div class="table-wrapper">
+            <table id="patientTable">
+              <thead>
+                <tr>
+                  <th>Patient ID</th>
+                  <th>Name</th>
+                  <th>Phone</th>
+                  <th>Email</th>
+                  <th>Prescription</th>
+                </tr>
+              </thead>
+              <tbody id="patientTableBody">
+                <!-- Dynamically populated by patientRows.js -->
+              </tbody>
+            </table>
+            <p id="noPatientRecord" class="noPatientRecord" style="display:none;">
+              No patient records found.
+            </p>
+          </div>
+        </main>
+
+        <!-- Footer placeholder -->
+        <div id="footer"></div>
+      </div>
+    </div>
+
+    <!-- Modal -->
+    <div id="modal" class="modal">
+      <div class="modal-content">
+        <span id="closeModal" class="close">&times;</span>
+        <div id="modal-body"></div>
+      </div>
+    </div>
+  </body>
+</html>

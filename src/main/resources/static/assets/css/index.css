@@ -1,0 +1,257 @@
+/* ── Global Reset ─────────────────────────────────────────── */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  font-family: 'Roboto', Arial, sans-serif;
+}
+
+/* ── Layout Wrapper ──────────────────────────────────────── */
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.container {
+  width: 100%;
+  min-height: 100vh;
+}
+
+/* ── Main Content – Hero Background ─────────────────────── */
+.main-content {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: url('../images/defineRole/bg.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  padding: 60px 20px;
+}
+
+/* ── Role Selection Card ─────────────────────────────────── */
+.role-card {
+  background: rgba(255, 255, 255, 0.92);
+  border-radius: 16px;
+  padding: 50px 60px;
+  text-align: center;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.18);
+  max-width: 560px;
+  width: 100%;
+}
+
+.role-card h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #014d4e;
+  font-family: 'Roboto', sans-serif;
+  margin-bottom: 10px;
+}
+
+.role-subtitle {
+  color: #666;
+  font-size: 1rem;
+  margin-bottom: 36px;
+}
+
+/* ── Role Buttons ────────────────────────────────────────── */
+.role-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: center;
+}
+
+.dashboard-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  width: 240px;
+  padding: 14px 28px;
+  background-color: #015c5d;
+  color: #fff;
+  font-size: 1.05rem;
+  font-weight: 600;
+  font-family: 'Roboto', sans-serif;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.25s ease, transform 0.15s ease;
+}
+
+.dashboard-btn:hover {
+  background-color: #017d7e;
+  transform: translateY(-2px);
+}
+
+.role-icon {
+  font-size: 1.3rem;
+}
+
+/* ── Modal ───────────────────────────────────────────────── */
+.modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal.active {
+  display: flex;
+}
+
+.modal-content {
+  background: #fff;
+  border-radius: 12px;
+  padding: 36px;
+  width: 100%;
+  max-width: 480px;
+  position: relative;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.25);
+  animation: slideIn 0.25s ease;
+}
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateY(-20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.close {
+  position: absolute;
+  top: 14px;
+  right: 18px;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #555;
+  transition: color 0.2s;
+}
+
+.close:hover {
+  color: #014d4e;
+}
+
+/* ── Input Field ─────────────────────────────────────────── */
+.input-field {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.input-field:focus {
+  border-color: #015c5d;
+}
+
+/* ── Select Dropdown ─────────────────────────────────────── */
+.select-dropdown {
+  padding: 10px 14px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  background: #fff;
+  cursor: pointer;
+  outline: none;
+}
+
+.select-dropdown:focus {
+  border-color: #015c5d;
+}
+
+/* ── Checkbox Group ──────────────────────────────────────── */
+.checkbox-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 10px 0;
+}
+
+.checkbox-group label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.9rem;
+  color: #333;
+  cursor: pointer;
+}
+
+/* ── Header ──────────────────────────────────────────────── */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 28px;
+  background: #014d4e;
+  color: #fff;
+}
+
+.header .logo {
+  height: 42px;
+}
+
+.header nav a {
+  color: #fff;
+  text-decoration: none;
+  margin-left: 20px;
+  font-size: 0.95rem;
+  transition: opacity 0.2s;
+}
+
+.header nav a:hover {
+  opacity: 0.75;
+}
+
+/* ── Footer ──────────────────────────────────────────────── */
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 28px;
+  background: #014d4e;
+  color: #ddd;
+  font-size: 0.85rem;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.footer a {
+  color: #aee6e6;
+  text-decoration: none;
+}
+
+.footer a:hover {
+  text-decoration: underline;
+}
+
+/* ── Responsive ──────────────────────────────────────────── */
+@media (max-width: 600px) {
+  .role-card {
+    padding: 36px 24px;
+  }
+
+  .role-card h2 {
+    font-size: 1.5rem;
+  }
+
+  .dashboard-btn {
+    width: 100%;
+  }
+
+  .footer {
+    flex-direction: column;
+    text-align: center;
+  }
+}

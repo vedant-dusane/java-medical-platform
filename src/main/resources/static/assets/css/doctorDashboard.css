@@ -1,0 +1,231 @@
+/* ── Global Reset ─────────────────────────────────────────── */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  font-family: Arial, sans-serif;
+}
+
+/* ── Layout ──────────────────────────────────────────────── */
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.main-content {
+  flex: 1;
+  padding: 28px 36px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  background: #f4f7f8;
+}
+
+/* ── Search & Filter Row ─────────────────────────────────── */
+.search-filter-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  background: #fff;
+  padding: 14px 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.input-field {
+  flex: 1;
+  min-width: 180px;
+  padding: 10px 14px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.input-field:focus {
+  border-color: #015c5d;
+}
+
+.filter-wrapper {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+/* ── Buttons ─────────────────────────────────────────────── */
+.dashboard-btn,
+.adminBtn {
+  padding: 10px 20px;
+  background-color: #015c5d;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.93rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.25s, transform 0.15s;
+  white-space: nowrap;
+}
+
+.dashboard-btn:hover,
+.adminBtn:hover {
+  background-color: #017d7e;
+  transform: translateY(-1px);
+}
+
+/* ── Table Wrapper ───────────────────────────────────────── */
+.table-wrapper {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+  overflow-x: auto;
+  padding: 16px;
+}
+
+/* ── Patient Table ───────────────────────────────────────── */
+#patientTable {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.93rem;
+}
+
+#patientTable thead {
+  background: rgba(1, 77, 78, 0.85);
+  color: #fff;
+}
+
+#patientTable thead th {
+  padding: 12px 16px;
+  text-align: left;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+}
+
+#patientTable tbody tr {
+  border-bottom: 1px solid #eee;
+  transition: background 0.15s;
+}
+
+#patientTable tbody tr:nth-child(even) {
+  background: #f9fafb;
+}
+
+#patientTable tbody tr:hover {
+  background: #e8f4f4;
+}
+
+#patientTable tbody td {
+  padding: 12px 16px;
+  color: #333;
+}
+
+/* ── Prescription Button ─────────────────────────────────── */
+.prescription-btn {
+  padding: 6px 14px;
+  background: #015c5d;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: transform 0.15s, filter 0.15s;
+}
+
+.prescription-btn:hover {
+  transform: scale(1.05);
+  filter: brightness(1.15);
+}
+
+/* ── No Record Message ───────────────────────────────────── */
+.noPatientRecord {
+  font-style: italic;
+  color: #888;
+  text-align: center;
+  margin-top: 20px;
+  font-size: 0.95rem;
+}
+
+/* ── Modal ───────────────────────────────────────────────── */
+.modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal.active {
+  display: flex;
+}
+
+.modal-content {
+  background: #fff;
+  border-radius: 12px;
+  padding: 36px;
+  width: 100%;
+  max-width: 500px;
+  position: relative;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.22);
+  animation: slideIn 0.25s ease;
+}
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateY(-20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.close {
+  position: absolute;
+  top: 14px;
+  right: 18px;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #666;
+  transition: color 0.2s;
+}
+
+.close:hover {
+  color: #014d4e;
+}
+
+/* ── Responsive ──────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .main-content {
+    padding: 16px;
+  }
+
+  .search-filter-wrapper {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  #patientTable thead th,
+  #patientTable tbody td {
+    padding: 8px 10px;
+    font-size: 0.82rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .filter-wrapper {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .dashboard-btn,
+  .adminBtn {
+    width: 100%;
+    text-align: center;
+  }
+}

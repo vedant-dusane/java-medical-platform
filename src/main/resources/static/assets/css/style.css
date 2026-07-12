@@ -1,0 +1,294 @@
+/* ═══════════════════════════════════════════════════════════
+   style.css – Shared global styles across all pages
+   ═══════════════════════════════════════════════════════════ */
+
+/* ── Google Fonts ────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap');
+
+/* ── CSS Variables ───────────────────────────────────────── */
+:root {
+  --primary:        #015c5d;
+  --primary-dark:   #014d4e;
+  --primary-hover:  #017d7e;
+  --white:          #ffffff;
+  --light-bg:       #f4f7f8;
+  --text-dark:      #1a1a2e;
+  --text-muted:     #666;
+  --border:         #ccc;
+  --radius-sm:      6px;
+  --radius-md:      10px;
+  --radius-lg:      16px;
+  --shadow-sm:      0 2px 8px rgba(0,0,0,0.08);
+  --shadow-md:      0 6px 20px rgba(0,0,0,0.12);
+  --shadow-lg:      0 12px 40px rgba(0,0,0,0.18);
+  --transition:     0.25s ease;
+}
+
+/* ── Base ────────────────────────────────────────────────── */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  font-family: 'Inter', 'Roboto', Arial, sans-serif;
+  color: var(--text-dark);
+  background: var(--light-bg);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* ── Header ──────────────────────────────────────────────── */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 32px;
+  background: var(--primary-dark);
+  color: var(--white);
+  box-shadow: var(--shadow-sm);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.header .logo-img {
+  height: 44px;
+  object-fit: contain;
+}
+
+.header .site-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--white);
+}
+
+.header nav {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.header nav a,
+.header nav button {
+  color: var(--white);
+  font-size: 0.93rem;
+  font-weight: 500;
+  background: none;
+  border: none;
+  cursor: pointer;
+  opacity: 0.9;
+  transition: opacity var(--transition);
+}
+
+.header nav a:hover,
+.header nav button:hover {
+  opacity: 1;
+  text-decoration: underline;
+}
+
+.header .add-btn {
+  padding: 8px 18px;
+  background: rgba(255,255,255,0.15);
+  border: 1px solid rgba(255,255,255,0.4);
+  border-radius: var(--radius-sm);
+  color: var(--white);
+  font-weight: 600;
+  cursor: pointer;
+  transition: background var(--transition);
+}
+
+.header .add-btn:hover {
+  background: rgba(255,255,255,0.28);
+}
+
+/* ── Footer ──────────────────────────────────────────────── */
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 32px;
+  background: var(--primary-dark);
+  color: rgba(255,255,255,0.75);
+  font-size: 0.85rem;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.footer a {
+  color: #aee6e6;
+  transition: color var(--transition);
+}
+
+.footer a:hover {
+  color: #fff;
+}
+
+/* ── Buttons ─────────────────────────────────────────────── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 22px;
+  border-radius: var(--radius-sm);
+  font-size: 0.93rem;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: background var(--transition), transform 0.15s;
+}
+
+.btn-primary {
+  background: var(--primary);
+  color: var(--white);
+}
+
+.btn-primary:hover {
+  background: var(--primary-hover);
+  transform: translateY(-1px);
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--primary);
+  border: 2px solid var(--primary);
+}
+
+.btn-outline:hover {
+  background: var(--primary);
+  color: var(--white);
+}
+
+/* ── Form Inputs ─────────────────────────────────────────── */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 14px;
+}
+
+.form-group label {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  padding: 10px 14px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-size: 0.95rem;
+  font-family: inherit;
+  outline: none;
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(1, 92, 93, 0.12);
+}
+
+/* ── Doctor Card ─────────────────────────────────────────── */
+.doctor-card {
+  background: var(--white);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+  width: 260px;
+  transition: box-shadow var(--transition), transform var(--transition);
+}
+
+.doctor-card:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-3px);
+}
+
+.doctor-card .card-header {
+  background: linear-gradient(135deg, var(--primary-dark), var(--primary-hover));
+  color: var(--white);
+  padding: 20px;
+  text-align: center;
+}
+
+.doctor-card .card-header h3 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.doctor-card .card-header p {
+  font-size: 0.82rem;
+  opacity: 0.85;
+}
+
+.doctor-card .card-body {
+  padding: 16px;
+  font-size: 0.88rem;
+  color: var(--text-muted);
+}
+
+.doctor-card .card-body p {
+  margin-bottom: 6px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* ── Alert / Notification ────────────────────────────────── */
+.alert {
+  padding: 12px 18px;
+  border-radius: var(--radius-sm);
+  font-size: 0.9rem;
+  margin-bottom: 14px;
+}
+
+.alert-success {
+  background: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+}
+
+.alert-error {
+  background: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+}
+
+/* ── Utility ─────────────────────────────────────────────── */
+.text-center { text-align: center; }
+.mt-1  { margin-top: 8px; }
+.mt-2  { margin-top: 16px; }
+.mb-1  { margin-bottom: 8px; }
+.mb-2  { margin-bottom: 16px; }
+.hidden { display: none !important; }
+
+/* ── Responsive ──────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .header {
+    padding: 12px 18px;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .footer {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .doctor-card {
+    width: 100%;
+  }
+}

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Dashboard – Smart Clinic</title>
+    <link rel="icon" type="image/png" th:href="@{/assets/images/logo/logo.png}" />
+    <link rel="stylesheet" th:href="@{/assets/css/adminDashboard.css}" />
+    <link rel="stylesheet" th:href="@{/assets/css/style.css}" />
+    <script th:src="@{/js/render.js}" defer></script>
+    <script th:src="@{/js/util.js}" defer></script>
+    <script th:src="@{/js/components/header.js}" defer></script>
+    <script th:src="@{/js/components/footer.js}" defer></script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="wrapper">
+        <!-- Header placeholder (header.js injects Add Doctor button) -->
+        <div id="header"></div>
+
+        <main class="main-content">
+          <!-- Search bar -->
+          <div class="search-filter-wrapper">
+            <input
+              type="text"
+              id="searchBar"
+              class="input-field"
+              placeholder="Search by doctor name"
+            />
+
+            <!-- Filter dropdowns -->
+            <div class="filter-wrapper">
+              <select id="filterTime" class="select-dropdown">
+                <option value="">Sort by Time</option>
+                <option value="AM">AM</option>
+                <option value="PM">PM</option>
+              </select>
+              <select id="filterSpecialty" class="select-dropdown">
+                <option value="">Filter by Specialty</option>
+                <option value="Cardiology">Cardiology</option>
+                <option value="Dermatology">Dermatology</option>
+                <option value="Neurology">Neurology</option>
+                <option value="Orthopedics">Orthopedics</option>
+                <option value="Pediatrics">Pediatrics</option>
+                <option value="General">General</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Dynamic doctor cards area -->
+          <div id="content"></div>
+        </main>
+
+        <!-- Footer placeholder -->
+        <div id="footer"></div>
+      </div>
+    </div>
+
+    <!-- Add Doctor Modal -->
+    <div id="modal" class="modal">
+      <div class="modal-content">
+        <span id="closeModal" class="close">&times;</span>
+        <div id="modal-body"></div>
+      </div>
+    </div>
+
+    <script type="module" th:src="@{/js/services/adminDashboard.js}" defer></script>
+    <script type="module" th:src="@{/js/components/doctorCard.js}" defer></script>
+  </body>
+</html>
