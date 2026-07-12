@@ -40,7 +40,7 @@ public class DashboardController {
         }
 
         // Invalid token → redirect to root login page
-        return "redirect:http://localhost:8080";
+        return "redirect:/";
     }
 
     /**
@@ -59,6 +59,6 @@ public class DashboardController {
         }
 
         // Invalid token → redirect to root login page
-        return "redirect:http://localhost:8080";
+        return "redirect:/";
     }
 }

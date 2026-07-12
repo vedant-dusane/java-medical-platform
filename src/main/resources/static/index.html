@@ -24,8 +24,9 @@
             <h2>Select Your Role</h2>
             <p class="role-subtitle">Choose how you'd like to access the clinic system</p>
             <div class="role-buttons">
+              <!-- IDs match getElementById calls in index.js -->
               <button
-                id="adminBtn"
+                id="adminLogin"
                 class="dashboard-btn"
                 onclick="selectRole('admin')"
               >
@@ -33,7 +34,7 @@
                 Admin
               </button>
               <button
-                id="doctorBtn"
+                id="doctorLogin"
                 class="dashboard-btn"
                 onclick="selectRole('doctor')"
               >

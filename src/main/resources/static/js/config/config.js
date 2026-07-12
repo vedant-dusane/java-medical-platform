@@ -1,7 +1,8 @@
 /**
  * config.js
  * Central configuration file.
- * Update API_BASE_URL to match your backend server address.
+ * Uses a relative URL so the app works in any environment
+ * (local, VM preview, Skills Network Labs proxy).
  */
 
-export const API_BASE_URL = "http://localhost:8080/api";
+export const API_BASE_URL = "/api";

@@ -18,25 +18,23 @@ const DOCTOR_API = API_BASE_URL + "/doctor/login";
 
 // ── Wire up role selection buttons after page load ────────────────────
 window.onload = function () {
-  // Admin login button (on index.html role-selection screen)
-  const adminBtn = document.getElementById("adminBtn");
+  // Admin login button — ID must match index.html id="adminLogin"
+  const adminBtn = document.getElementById("adminLogin");
   if (adminBtn) {
     adminBtn.addEventListener("click", () => {
-      selectRole("admin");          // save role first
-      openModal("adminLogin");      // then show login modal
+      openModal("adminLogin");
     });
   }
 
-  // Doctor login button
-  const doctorBtn = document.getElementById("doctorBtn");
+  // Doctor login button — ID must match index.html id="doctorLogin"
+  const doctorBtn = document.getElementById("doctorLogin");
   if (doctorBtn) {
     doctorBtn.addEventListener("click", () => {
-      selectRole("doctor");
       openModal("doctorLogin");
     });
   }
 
-  // Patient button — no login modal, just navigate
+  // Patient button — no login modal, just navigate via inline onclick
   const patientBtn = document.getElementById("patientBtn");
   if (patientBtn) {
     patientBtn.addEventListener("click", () => {
@@ -46,10 +44,6 @@ window.onload = function () {
 };
 
 // ── Admin Login Handler ───────────────────────────────────────────────
-/**
- * Called by the inline onclick on the Admin login modal button.
- * Reads credentials, POSTs to /api/admin, stores token on success.
- */
 window.adminLoginHandler = async function () {
   const username = document.getElementById("adminUsername")?.value?.trim();
   const password = document.getElementById("adminPassword")?.value?.trim();
@@ -82,10 +76,6 @@ window.adminLoginHandler = async function () {
 };
 
 // ── Doctor Login Handler ──────────────────────────────────────────────
-/**
- * Called by the inline onclick on the Doctor login modal button.
- * Reads credentials, POSTs to /api/doctor/login, stores token on success.
- */
 window.doctorLoginHandler = async function () {
   const email    = document.getElementById("doctorEmail")?.value?.trim();
   const password = document.getElementById("doctorPassword")?.value?.trim();
