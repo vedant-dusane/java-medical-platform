@@ -1,6 +1,5 @@
 package com.project.backend.controllers;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,8 +20,11 @@ import java.util.Map;
 @Controller
 public class DashboardController {
 
-    @Autowired
-    private TokenService tokenService;
+    private final TokenService tokenService;
+
+    public DashboardController(TokenService tokenService) {
+        this.tokenService = tokenService;
+    }
 
     /**
      * Renders the Admin Dashboard view after validating the token.
