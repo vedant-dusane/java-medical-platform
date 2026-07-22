@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Patient Dashboard – Smart Clinic</title>
+    <meta name="description" content="Browse doctors, filter by specialty or time, and book appointments." />
+    <link rel="icon" type="image/png" href="../assets/images/logo/logo.png" />
+    <link rel="stylesheet" href="../assets/css/adminDashboard.css" />
+    <link rel="stylesheet" href="../assets/css/style.css" />
+    <link rel="stylesheet" href="../assets/css/patientDashboard.css" />
+    <script src="../js/components/header.js" defer></script>
+    <script src="../js/components/footer.js" defer></script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="wrapper">
+        <!-- Dynamic header (role = loggedPatient → shows Home / Appointments / Logout) -->
+        <div id="header"></div>
+
+        <main class="main-content">
+          <!-- Search bar -->
+          <input
+            type="text"
+            id="searchBar"
+            class="searchBar input-field"
+            placeholder="Search doctors by name…"
+          />
+
+          <!-- Filter dropdowns -->
+          <div class="filter-wrapper">
+            <select class="filter-select select-dropdown" id="filterTime">
+              <option value="">Filter by Time</option>
+              <option value="AM">AM</option>
+              <option value="PM">PM</option>
+            </select>
+            <select class="filter-select select-dropdown" id="filterSpecialty">
+              <option value="">Filter by Specialty</option>
+              <option value="Cardiology">Cardiology</option>
+              <option value="Dermatology">Dermatology</option>
+              <option value="Neurology">Neurology</option>
+              <option value="Orthopedics">Orthopedics</option>
+              <option value="Pediatrics">Pediatrics</option>
+              <option value="General">General</option>
+            </select>
+          </div>
+
+          <!-- Dynamic doctor cards injected here -->
+          <div id="content"></div>
+        </main>
+
+        <div id="footer"></div>
+      </div>
+    </div>
+
+    <!-- Shared modal (for potential future modals on this page) -->
+    <div id="modal" class="modal">
+      <div class="modal-content">
+        <span class="close" id="closeModal">&times;</span>
+        <div id="modal-body"></div>
+      </div>
+    </div>
+
+    <!-- Load logged-in patient dashboard logic as ES module -->
+    <script type="module" src="../js/loggedPatientDashboard.js"></script>
+  </body>
+</html>

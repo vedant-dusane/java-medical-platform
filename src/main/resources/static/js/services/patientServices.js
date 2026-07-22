@@ -28,7 +28,7 @@ const PATIENT_API = API_BASE_URL + "/patient";
 export async function patientSignup(data) {
   try {
     // POST patient registration data to the signup endpoint
-    const response = await fetch(`${PATIENT_API}/register`, {
+    const response = await fetch(`${PATIENT_API}`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data),
@@ -81,16 +81,16 @@ export async function patientLogin(data) {
 export async function getPatientData(token) {
   try {
     // Pass token as a query parameter for authentication
-    const response = await fetch(`${PATIENT_API}/data?token=${token}`, {
+    const response = await fetch(`${PATIENT_API}/${token}`, {
       method: "GET",
       headers: { "Content-Type": "application/json" },
     });
 
     if (!response.ok) return null;
 
-    // Return the patient profile object
-    const patient = await response.json();
-    return patient;
+    // Controller returns { patient: {...} } — unwrap the inner object
+    const body = await response.json();
+    return body.patient || body;
   } catch (error) {
     console.error("getPatientData() error:", error);
     return null;
@@ -111,7 +111,7 @@ export async function getPatientData(token) {
 export async function getPatientAppointments(id, token, user) {
   try {
     // Dynamically build URL to support both dashboard roles
-    const url = `${PATIENT_API}/appointments/${id}?token=${token}&user=${user}`;
+    const url = `${PATIENT_API}/${id}/${token}`;
 
     const response = await fetch(url, {
       method: "GET",
@@ -145,7 +145,7 @@ export async function getPatientAppointments(id, token, user) {
 export async function filterAppointments(condition, name, token) {
   try {
     // Construct the filter URL with all parameters
-    const url = `${PATIENT_API}/appointments/filter/${condition}/${name || "null"}?token=${token}`;
+    const url = `${PATIENT_API}/filter/${condition || "null"}/${name || "null"}/${token}`;
 
     const response = await fetch(url, {
       method: "GET",
@@ -212,12 +212,20 @@ export function showBookingOverlay(e, doctor, patientData) {
     .map((t) => `<option value="${t}">${t}</option>`)
     .join("");
 
+  // Build a date picker defaulting to today
+  const todayStr = new Date().toISOString().split("T")[0];
+
   overlay.innerHTML = `
     <h3>Book Appointment with Dr. ${doctor.name}</h3>
     <p style="text-align:center;color:#666;font-size:0.88rem;margin-bottom:12px;">
       ${doctor.specialty || "General"}
     </p>
-    <select id="bookingTime">
+    <label style="display:block;margin-bottom:4px;font-size:0.9rem;">Select Date</label>
+    <input type="date" id="bookingDate" value="${todayStr}"
+           min="${todayStr}"
+           style="width:90%;margin:0 auto 12px;display:block;padding:8px;border-radius:8px;border:1px solid #ccc;" />
+    <label style="display:block;margin-bottom:4px;font-size:0.9rem;">Select Time Slot</label>
+    <select id="bookingTime" style="width:90%;margin:0 auto 12px;display:block;padding:8px;border-radius:8px;">
       <option value="">-- Select Time Slot --</option>
       ${timeOptions}
     </select>
@@ -236,21 +244,26 @@ export function showBookingOverlay(e, doctor, patientData) {
   // ── Confirm booking ─────────────────────────────────────────────
   document.getElementById("confirmBookingBtn").addEventListener("click", async () => {
     const selectedTime = document.getElementById("bookingTime").value;
-    if (!selectedTime) {
-      alert("Please select a time slot.");
+    const selectedDate = document.getElementById("bookingDate").value;
+    if (!selectedTime || !selectedDate) {
+      alert("Please select a date and time slot.");
       return;
     }
 
+    // Parse "HH:mm-HH:mm" → take start hour → build ISO LocalDateTime
+    const startHour = selectedTime.split("-")[0]; // e.g. "09:00"
+    const appointmentTime = `${selectedDate}T${startHour}:00`; // e.g. "2024-08-15T09:00:00"
+
     const token = localStorage.getItem("token");
     const appointmentData = {
-      doctor:    { id: doctor.id },
-      patient:   { id: patientData.id },
-      appointmentTime: selectedTime,
+      doctor:  { id: doctor.id },
+      patient: { id: patientData.id },
+      appointmentTime: appointmentTime,
       status: 0,
     };
 
     try {
-      const response = await fetch(`${API_BASE_URL}/appointment?token=${token}`, {
+      const response = await fetch(`${API_BASE_URL}/appointments/${token}`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(appointmentData),

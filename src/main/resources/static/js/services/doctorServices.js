@@ -32,7 +32,7 @@ export async function getDoctors() {
 
     // Extract and return the list from the response JSON
     const data = await response.json();
-    return data || [];
+    return data.doctors || [];
   } catch (error) {
     console.error("getDoctors() error:", error);
     // Return empty list to avoid breaking the frontend
@@ -52,7 +52,7 @@ export async function getDoctors() {
 export async function deleteDoctor(id, token) {
   try {
     // Construct the full URL with id and token as query param
-    const url = `${DOCTOR_API}/${id}?token=${token}`;
+    const url = `${DOCTOR_API}/${id}/${token}`;
 
     const response = await fetch(url, {
       method: "DELETE",
@@ -84,7 +84,7 @@ export async function deleteDoctor(id, token) {
 export async function saveDoctor(doctor, token) {
   try {
     // POST with JSON body; pass token as query param for auth
-    const response = await fetch(`${DOCTOR_API}?token=${token}`, {
+    const response = await fetch(`${DOCTOR_API}/${token}`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(doctor),
@@ -128,7 +128,7 @@ export async function filterDoctors(name, time, specialty) {
     }
 
     const data = await response.json();
-    return data || [];
+    return data.doctors || [];
   } catch (error) {
     console.error("filterDoctors() error:", error);
     alert("An error occurred while filtering doctors.");

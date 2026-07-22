@@ -19,7 +19,7 @@ const APPOINTMENT_API = API_BASE_URL + "/appointment";
  */
 export async function getAllAppointments(date, patientName, token) {
   try {
-    const url = `${APPOINTMENT_API}/${date}/${patientName || "null"}?token=${token}`;
+    const url = `${APPOINTMENT_API}/${date}/${patientName || "null"}/${token}`;
 
     const response = await fetch(url, {
       method: "GET",
@@ -32,7 +32,7 @@ export async function getAllAppointments(date, patientName, token) {
     }
 
     const data = await response.json();
-    return data || [];
+    return data.appointments || [];
   } catch (error) {
     console.error("getAllAppointments() error:", error);
     return [];

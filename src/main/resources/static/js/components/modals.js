@@ -102,7 +102,7 @@ function getModalContent(type) {
         <button
           class="dashboard-btn"
           style="width:100%;margin-top:12px;"
-          onclick="patientLoginHandler()">
+          onclick="loginPatient()">
           Login
         </button>`;
 
@@ -132,7 +132,7 @@ function getModalContent(type) {
         <button
           class="dashboard-btn"
           style="width:100%;margin-top:12px;"
-          onclick="patientSignupHandler()">
+          onclick="signupPatient()">
           Sign Up
         </button>`;
 
