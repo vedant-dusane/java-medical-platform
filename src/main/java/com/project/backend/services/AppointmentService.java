@@ -21,6 +21,7 @@ import java.util.stream.Collectors;
 public class AppointmentService {
 
     private final AppointmentRepository appointmentRepository;
+    @SuppressWarnings("unused")
     private final PatientRepository patientRepository;
     private final DoctorRepository doctorRepository;
     private final TokenService tokenService;
