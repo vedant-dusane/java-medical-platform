@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Patient Record – Smart Clinic</title>
+    <link rel="stylesheet" href="../assets/css/style.css" />
+  </head>
+  <body>
+    <div class="container" style="padding: 50px; text-align: center;">
+      <h2>Patient Record</h2>
+      <p>Redirecting to dashboard...</p>
+    </div>
+    <script>
+      const token = localStorage.getItem("token");
+      const role = localStorage.getItem("userRole");
+      if (role === "loggedPatient") {
+        window.location.href = "/pages/loggedPatientDashboard.html";
+      } else if (role === "doctor") {
+        window.location.href = "/doctorDashboard/" + token;
+      } else {
+        window.location.href = "/";
+      }
+    </script>
+  </body>
+</html>

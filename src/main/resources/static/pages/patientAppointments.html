@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Appointments – Smart Clinic</title>
+    <link rel="icon" type="image/png" href="../assets/images/logo/logo.png" />
+    <link rel="stylesheet" href="../assets/css/adminDashboard.css" />
+    <link rel="stylesheet" href="../assets/css/doctorDashboard.css" />
+    <link rel="stylesheet" href="../assets/css/style.css" />
+    <script src="../js/components/header.js" defer></script>
+    <script src="../js/components/footer.js" defer></script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="wrapper">
+        <div id="header"></div>
+
+        <main class="main-content">
+          <h2 style="color:#014d4e; margin-bottom: 20px;">My Appointments</h2>
+
+          <!-- Filter bar -->
+          <div class="search-filter-wrapper" style="margin-bottom: 20px;">
+            <input
+              type="text"
+              id="doctorSearchInput"
+              class="input-field"
+              placeholder="Search by doctor name..."
+            />
+            <div class="filter-wrapper">
+              <select id="conditionFilter" class="select-dropdown">
+                <option value="null">All Appointments</option>
+                <option value="future">Scheduled (Future)</option>
+                <option value="past">Completed (Past)</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Appointments list / table -->
+          <div class="table-wrapper">
+            <table id="appointmentsTable">
+              <thead>
+                <tr>
+                  <th>Appt ID</th>
+                  <th>Doctor Name</th>
+                  <th>Date & Time</th>
+                  <th>Status</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="appointmentsTableBody">
+                <!-- Dynamically populated -->
+              </tbody>
+            </table>
+          </div>
+        </main>
+
+        <div id="footer"></div>
+      </div>
+    </div>
+
+    <script type="module" src="../js/patientAppointment.js"></script>
+  </body>
+</html>

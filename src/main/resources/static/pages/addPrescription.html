@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Add Prescription – Smart Clinic</title>
+    <link rel="icon" type="image/png" href="../assets/images/logo/logo.png" />
+    <link rel="stylesheet" href="../assets/css/adminDashboard.css" />
+    <link rel="stylesheet" href="../assets/css/doctorDashboard.css" />
+    <link rel="stylesheet" href="../assets/css/style.css" />
+    <script src="../js/components/header.js" defer></script>
+    <script src="../js/components/footer.js" defer></script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="wrapper">
+        <div id="header"></div>
+
+        <main class="main-content" style="max-width: 600px; margin: 40px auto; width: 100%;">
+          <div class="role-card" style="text-align: left; padding: 30px;">
+            <h2 style="color:#014d4e; margin-bottom: 8px;">Add Prescription</h2>
+            <p id="patientInfoBanner" style="color: #666; font-size: 0.95rem; margin-bottom: 20px;">
+              Loading patient details...
+            </p>
+
+            <form id="prescriptionForm">
+              <div class="form-group" style="margin-bottom: 16px;">
+                <label for="medication" style="display:block; font-weight:600; margin-bottom:6px;">Medication</label>
+                <input
+                  type="text"
+                  id="medication"
+                  class="input-field"
+                  placeholder="e.g. Amoxicillin 500mg"
+                  required
+                />
+              </div>
+
+              <div class="form-group" style="margin-bottom: 16px;">
+                <label for="dosage" style="display:block; font-weight:600; margin-bottom:6px;">Dosage</label>
+                <input
+                  type="text"
+                  id="dosage"
+                  class="input-field"
+                  placeholder="e.g. 1 capsule 3x daily"
+                  required
+                />
+              </div>
+
+              <div class="form-group" style="margin-bottom: 24px;">
+                <label for="doctorNotes" style="display:block; font-weight:600; margin-bottom:6px;">Doctor Notes</label>
+                <textarea
+                  id="doctorNotes"
+                  class="input-field"
+                  rows="4"
+                  placeholder="Additional instructions for the patient..."
+                  style="width: 100%; border-radius: 8px; border: 1px solid #ccc; padding: 10px;"
+                ></textarea>
+              </div>
+
+              <div style="display: flex; gap: 12px;">
+                <button type="submit" class="dashboard-btn" style="flex: 1;">
+                  Save Prescription
+                </button>
+                <button
+                  type="button"
+                  id="cancelBtn"
+                  class="dashboard-btn"
+                  style="background: #888; flex: 1;"
+                >
+                  Back to Dashboard
+                </button>
+              </div>
+            </form>
+          </div>
+        </main>
+
+        <div id="footer"></div>
+      </div>
+    </div>
+
+    <script type="module" src="../js/addPrescription.js"></script>
+  </body>
+</html>

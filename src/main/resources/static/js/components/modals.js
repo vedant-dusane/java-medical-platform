@@ -39,6 +39,7 @@ export function openModal(type) {
   modal.classList.add("active");
   modal.style.display = "flex";
 }
+window.openModal = openModal;
 
 // ── Public: close the modal ───────────────────────────────────────────
 export function closeModal() {
@@ -47,6 +48,7 @@ export function closeModal() {
   modal.style.display = "none";
   if (modalBody) modalBody.innerHTML = "";
 }
+window.closeModal = closeModal;
 
 // ── Build modal HTML by type ──────────────────────────────────────────
 function getModalContent(type) {

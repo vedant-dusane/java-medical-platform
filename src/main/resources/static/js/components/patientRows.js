@@ -1,35 +1,33 @@
 /**
  * patientRows.js
  * Creates a <tr> row element for each patient appointment in the doctor dashboard.
- * Used by: doctorDashboard.js
+ * Supports both nested patient objects and flat AppointmentDTO fields.
  */
 
-/**
- * Builds and returns a <tr> element representing one patient appointment row.
- *
- * @param {Object} appointment – Appointment object from the API.
- * @returns {HTMLTableRowElement}
- */
 export function createPatientRow(appointment) {
-  const patient = appointment.patient || {};
-
   const row = document.createElement("tr");
+
+  // Read fields with fallback for both nested and flat DTO properties
+  const patientId    = appointment.patientId    || appointment.patient?.id    || "—";
+  const patientName  = appointment.patientName  || appointment.patient?.name  || "—";
+  const patientPhone = appointment.patientPhone || appointment.patient?.phone || "—";
+  const patientEmail = appointment.patientEmail || appointment.patient?.email || "—";
 
   // Patient ID
   const idCell = document.createElement("td");
-  idCell.textContent = patient.id || "—";
+  idCell.textContent = patientId;
 
   // Patient Name
   const nameCell = document.createElement("td");
-  nameCell.textContent = patient.name || "—";
+  nameCell.textContent = patientName;
 
   // Phone
   const phoneCell = document.createElement("td");
-  phoneCell.textContent = patient.phone || "—";
+  phoneCell.textContent = patientPhone;
 
   // Email
   const emailCell = document.createElement("td");
-  emailCell.textContent = patient.email || "—";
+  emailCell.textContent = patientEmail;
 
   // Prescription button
   const prescCell = document.createElement("td");
@@ -37,13 +35,12 @@ export function createPatientRow(appointment) {
   prescBtn.textContent = "Add Prescription";
   prescBtn.classList.add("prescription-btn");
   prescBtn.setAttribute("data-appointment-id", appointment.id);
-  prescBtn.setAttribute("data-patient-id", patient.id);
 
-  // Navigate to Add Prescription page with context
+  // Navigate to Add Prescription page with context stored in localStorage
   prescBtn.addEventListener("click", () => {
     localStorage.setItem("selectedAppointmentId", appointment.id);
-    localStorage.setItem("selectedPatientId", patient.id);
-    localStorage.setItem("selectedPatientName", patient.name);
+    localStorage.setItem("selectedPatientId", patientId);
+    localStorage.setItem("selectedPatientName", patientName);
     window.location.href = "/pages/addPrescription.html";
   });
 

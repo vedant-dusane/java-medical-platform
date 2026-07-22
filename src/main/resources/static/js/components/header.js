@@ -48,7 +48,7 @@ function renderHeader() {
     `;
   } else if (role === "doctor") {
     headerContent += `
-        <a href="/doctor/dashboard" id="homeBtn">Home</a>
+        <a href="/doctorDashboard/${token}" id="homeBtn">Home</a>
         <a href="#" id="logoutBtn">Logout</a>
     `;
   } else if (role === "patient") {
