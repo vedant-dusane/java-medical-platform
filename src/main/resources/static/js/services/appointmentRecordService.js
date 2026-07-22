@@ -6,7 +6,7 @@
 
 import { API_BASE_URL } from "../config/config.js";
 
-const APPOINTMENT_API = API_BASE_URL + "/appointment";
+const APPOINTMENT_API = API_BASE_URL + "/appointments";
 
 /**
  * Fetches all appointments for the logged-in doctor,

@@ -12,7 +12,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/patient")
+@RequestMapping("${api.path}" + "patient")
 public class PatientController {
 
     private final PatientService patientService;
