@@ -1,43 +1,84 @@
 package com.project.backend.services;
 
-import org.springframework.stereotype.Service;
+import com.project.backend.repositories.AdminRepository;
+import com.project.backend.repositories.DoctorRepository;
+import com.project.backend.repositories.PatientRepository;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.security.Keys;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 
+import javax.crypto.SecretKey;
+import java.nio.charset.StandardCharsets;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
 /**
  * TokenService
- *
- * Handles token validation logic for Admin and Doctor dashboard access.
- *
- * validateToken(token, role):
- *   - Returns an empty Map  → token is valid (controller proceeds to the view).
- *   - Returns a non-empty Map → token is invalid (controller redirects to login).
+ * Handles JWT token generation, extraction, and validation.
  */
-@Service
+@Component
 public class TokenService {
 
+    @Value("${jwt.secret}")
+    private String secret;
+
+    private final AdminRepository adminRepository;
+    private final DoctorRepository doctorRepository;
+    private final PatientRepository patientRepository;
+
+    public TokenService(AdminRepository adminRepository,
+                        DoctorRepository doctorRepository,
+                        PatientRepository patientRepository) {
+        this.adminRepository = adminRepository;
+        this.doctorRepository = doctorRepository;
+        this.patientRepository = patientRepository;
+    }
+
+    /** Generates a JWT token valid for 7 days with the given identifier as subject. */
+    public String generateToken(String identifier) {
+        return Jwts.builder()
+                .subject(identifier)
+                .issuedAt(new Date())
+                .expiration(new Date(System.currentTimeMillis() + 7L * 24 * 60 * 60 * 1000))
+                .signWith(getSigningKey())
+                .compact();
+    }
+
+    /** Extracts the identifier (email / username) from a JWT token. */
+    public String extractIdentifier(String token) {
+        return Jwts.parser()
+                .verifyWith(getSigningKey())
+                .build()
+                .parseSignedClaims(token)
+                .getPayload()
+                .getSubject();
+    }
+
     /**
-     * Validates a JWT token and checks that it belongs to the expected role.
-     *
-     * @param token – The JWT token string passed from the client.
-     * @param role  – The expected role: "admin" or "doctor".
-     * @return An empty Map if the token is valid for the given role;
-     *         a Map containing an error entry otherwise.
+     * Validates token for the given user type.
+     * Returns empty Map if valid, Map with error if invalid.
      */
-    public Map<String, Object> validateToken(String token, String role) {
+    public Map<String, Object> validateToken(String token, String user) {
         Map<String, Object> errors = new HashMap<>();
-
-        // Basic null / empty check
-        if (token == null || token.isBlank()) {
-            errors.put("error", "Token is missing or empty");
-            return errors;
+        try {
+            String identifier = extractIdentifier(token);
+            boolean valid = switch (user) {
+                case "admin"   -> adminRepository.findByUsername(identifier) != null;
+                case "doctor"  -> doctorRepository.findByEmail(identifier) != null;
+                case "patient" -> patientRepository.findByEmail(identifier) != null;
+                default        -> false;
+            };
+            if (!valid) errors.put("error", "User not found");
+        } catch (Exception e) {
+            errors.put("error", "Invalid or expired token");
         }
+        return errors;
+    }
 
-        // Full JWT signature verification and role claim extraction will be implemented
-        // once the JWT utility class is available. For now, a non-blank token is
-        // treated as structurally valid.
-
-        return errors; // empty map → valid
+    private SecretKey getSigningKey() {
+        byte[] keyBytes = secret.getBytes(StandardCharsets.UTF_8);
+        return Keys.hmacShaKeyFor(keyBytes);
     }
 }
