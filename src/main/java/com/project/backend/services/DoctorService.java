@@ -48,7 +48,12 @@ public class DoctorService {
                 .map(a -> a.getAppointmentTime().toLocalTime().toString())
                 .collect(Collectors.toList());
 
-        allSlots.removeAll(bookedTimes);
+        allSlots.removeIf(slot -> bookedTimes.stream().anyMatch(bt ->
+                slot.equalsIgnoreCase(bt)
+                || slot.startsWith(bt)
+                || bt.startsWith(slot)
+                || (slot.length() >= 5 && bt.length() >= 5 && slot.substring(0, 5).equals(bt.substring(0, 5)))
+        ));
         return allSlots;
     }
 
@@ -143,13 +148,26 @@ public class DoctorService {
         return Map.of("doctors", filterDoctorByTime(doctorRepository.findAll(), amOrPm));
     }
 
-    /** Filters a list of doctors by AM or PM availability. */
+    /** Filters a list of doctors by AM or PM availability or specific time slot. */
     private List<Doctor> filterDoctorByTime(List<Doctor> doctors, String amOrPm) {
+        if (amOrPm == null || amOrPm.isBlank() || amOrPm.equalsIgnoreCase("null")) {
+            return doctors;
+        }
+        String cleanParam = amOrPm.trim();
         return doctors.stream().filter(d -> {
-            if (d.getAvailableTimes() == null) return false;
+            if (d.getAvailableTimes() == null || d.getAvailableTimes().isEmpty()) return false;
             return d.getAvailableTimes().stream().anyMatch(t -> {
-                if (amOrPm.equalsIgnoreCase("AM")) return t.compareTo("12:00") < 0;
-                else return t.compareTo("12:00") >= 0;
+                if (cleanParam.equalsIgnoreCase("AM")) {
+                    return t.toUpperCase().contains("AM") || (t.matches("^\\d{2}:.*") && t.compareTo("12:00") < 0);
+                } else if (cleanParam.equalsIgnoreCase("PM")) {
+                    return t.toUpperCase().contains("PM") || (t.matches("^\\d{2}:.*") && t.compareTo("12:00") >= 0);
+                } else {
+                    String cleanT = t.trim();
+                    return cleanT.equalsIgnoreCase(cleanParam)
+                            || cleanT.contains(cleanParam)
+                            || cleanParam.contains(cleanT)
+                            || (cleanT.length() >= 5 && cleanParam.length() >= 5 && cleanT.substring(0, 5).equals(cleanParam.substring(0, 5)));
+                }
             });
         }).collect(Collectors.toList());
     }

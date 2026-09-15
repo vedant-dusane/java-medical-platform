@@ -10,7 +10,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @RestController
-@RequestMapping("${api.path}" + "prescription")
+@RequestMapping({ "${api.path:}" + "prescription", "/prescription", "/api/prescription", "${api.path:}" + "prescriptions", "/prescriptions", "/api/prescriptions" })
 public class PrescriptionController {
 
     private final PrescriptionService prescriptionService;

@@ -110,7 +110,13 @@ public class ServiceLayer {
         LocalDate date = appointment.getAppointmentTime().toLocalDate();
         List<String> available = doctorService.getDoctorAvailability(appointment.getDoctor().getId(), date);
         String requestedTime = appointment.getAppointmentTime().toLocalTime().toString();
-        return available.contains(requestedTime) ? 1 : 0;
+        boolean matches = available.stream().anyMatch(slot ->
+                slot.equalsIgnoreCase(requestedTime)
+                || slot.startsWith(requestedTime)
+                || requestedTime.startsWith(slot)
+                || (slot.length() >= 5 && requestedTime.length() >= 5 && slot.substring(0, 5).equals(requestedTime.substring(0, 5)))
+        );
+        return matches ? 1 : 0;
     }
 
     /** Checks if a patient already exists. Returns true if new, false if duplicate. */

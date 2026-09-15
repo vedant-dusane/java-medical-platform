@@ -1,5 +1,6 @@
 package com.project.backend.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -12,6 +13,7 @@ import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(name = "patients")
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Patient {
 
     @Id
@@ -37,6 +39,20 @@ public class Patient {
     @NotNull(message = "Address cannot be null")
     @Size(max = 255, message = "Address must not exceed 255 characters")
     private String address;
+
+    private Integer age;
+    private String gender;
+
+    public Patient() {
+    }
+
+    public Patient(String name, String email, String password, String phone, String address) {
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.phone = phone;
+        this.address = address;
+    }
 
     // ── Getters & Setters ─────────────────────────────────────────────────────
 
@@ -86,5 +102,21 @@ public class Patient {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public Integer getAge() {
+        return age;
+    }
+
+    public void setAge(Integer age) {
+        this.age = age;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 }

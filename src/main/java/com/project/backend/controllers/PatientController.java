@@ -12,7 +12,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @RestController
-@RequestMapping("${api.path}" + "patient")
+@RequestMapping({ "${api.path:}" + "patient", "/patient", "/api/patient" })
 public class PatientController {
 
     private final PatientService patientService;
@@ -55,7 +55,7 @@ public class PatientController {
         return service.validatePatientLogin(login);
     }
 
-    @GetMapping("/{id}/{token}")
+    @GetMapping({ "/{id}/{token}", "/{id}/patient/{token}" })
     public ResponseEntity<Map<String, Object>> getPatientAppointments(
             @PathVariable Long id,
             @PathVariable String token) {

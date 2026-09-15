@@ -14,7 +14,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @RestController
-@RequestMapping("${api.path}" + "doctor")
+@RequestMapping({ "${api.path:}" + "doctor", "/doctor", "/api/doctor" })
 public class DoctorController {
 
     private final DoctorService doctorService;

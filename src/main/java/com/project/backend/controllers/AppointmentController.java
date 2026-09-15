@@ -13,7 +13,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @RestController
-@RequestMapping("${api.path}" + "appointments")
+@RequestMapping({ "${api.path:}" + "appointments", "/appointments", "/api/appointments", "${api.path:}" + "appointment", "/appointment", "/api/appointment" })
 public class AppointmentController {
 
     private final AppointmentService appointmentService;
