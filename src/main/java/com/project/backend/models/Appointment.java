@@ -32,6 +32,7 @@ public class Appointment {
     @NotNull(message = "Patient cannot be null")
     private Patient patient;
 
+    @NotNull(message = "Appointment time cannot be null")
     private LocalDateTime appointmentTime;
 
     @NotNull(message = "Status cannot be null")
