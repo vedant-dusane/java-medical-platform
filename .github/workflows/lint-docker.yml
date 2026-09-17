@@ -1,0 +1,21 @@
+name: Lint Dockerfiles
+on: [push, pull_request]
+
+jobs:
+  dockerlint:
+    runs-on: ubuntu-latest
+    name: Lint Dockerfiles
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Ensure Dockerfile exists in app directory
+        run: |
+          if [ ! -f "./app/Dockerfile" ]; then
+            mkdir -p app
+            cp Dockerfile ./app/Dockerfile
+          fi
+
+      - name: Run hadolint
+        uses: hadolint/hadolint-action@v3.1.0
+        with:
+          dockerfile: ./app/Dockerfile
