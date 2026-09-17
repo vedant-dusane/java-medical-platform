@@ -4,10 +4,10 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.persistence.Transient;
-import jakarta.validation.constraints.Future;
 import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDate;
@@ -15,7 +15,7 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 @Entity
-@Table(name = "appointments")
+@Table(name = "appointment")
 public class Appointment {
 
     @Id
@@ -23,14 +23,15 @@ public class Appointment {
     private Long id;
 
     @ManyToOne
+    @JoinColumn(name = "doctor_id")
     @NotNull(message = "Doctor cannot be null")
     private Doctor doctor;
 
     @ManyToOne
+    @JoinColumn(name = "patient_id")
     @NotNull(message = "Patient cannot be null")
     private Patient patient;
 
-    @Future(message = "Appointment time must be in the future")
     private LocalDateTime appointmentTime;
 
     @NotNull(message = "Status cannot be null")
