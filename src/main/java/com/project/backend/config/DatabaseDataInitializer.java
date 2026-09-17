@@ -4,7 +4,6 @@ import org.bson.Document;
 import org.bson.types.ObjectId;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.data.mongodb.core.MongoTemplate;
@@ -27,7 +26,6 @@ public class DatabaseDataInitializer implements ApplicationRunner {
     private final JdbcTemplate jdbcTemplate;
     private final MongoTemplate mongoTemplate;
 
-    @Autowired
     public DatabaseDataInitializer(JdbcTemplate jdbcTemplate, MongoTemplate mongoTemplate) {
         this.jdbcTemplate = jdbcTemplate;
         this.mongoTemplate = mongoTemplate;
