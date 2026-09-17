@@ -1,0 +1,8 @@
+target/
+.git/
+.gitignore
+.vscode/
+.mvn/
+mvnw
+mvnw.cmd
+*.log
