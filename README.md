@@ -80,7 +80,7 @@ docker compose up --build
 
 Open `http://localhost:8080` once the app logs `Started`.
 
-The default Docker credentials are in `docker-compose.yml` — feel free to change them.
+The default credentials in `docker-compose.yml` can be changed to anything you want.
 
 ---
 
@@ -257,4 +257,4 @@ MIT — see [LICENSE](./LICENSE).
 
 ## Acknowledgements
 
-This project began as a capstone for the IBM Full Stack Software Developer Professional Certificate (Java Development Capstone Project) . The database schema design, user stories, and initial entity models came from that coursework. Everything from the service layer, JWT auth, frontend JavaScript, CI pipelines, Docker setup, and data initialiser was built on top of that foundation.
+This project began as a capstone for the IBM Full Stack Software Developer Professional Certificate (Java Development Capstone Project). The database schema design, user stories, and initial entity models came from that coursework. Everything from the service layer, JWT auth, frontend JavaScript, CI pipelines, Docker setup, and data initialiser was built on top of that foundation.

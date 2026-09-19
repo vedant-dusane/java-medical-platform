@@ -1,4 +1,4 @@
-# Step 1: Use Maven with JDK 17 to build the app
+# Build stage
 FROM maven:3.9.9-eclipse-temurin-17 AS builder
 
 WORKDIR /app
@@ -8,7 +8,7 @@ COPY src ./src
 
 RUN mvn clean package -DskipTests
 
-# Step 2: Use lightweight JRE 17 for running the app
+# Runtime stage
 FROM eclipse-temurin:17.0.15_6-jre
 
 WORKDIR /app

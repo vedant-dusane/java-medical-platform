@@ -44,7 +44,7 @@ services:
       SPRING_DATASOURCE_USERNAME: root
       SPRING_DATASOURCE_PASSWORD: clinic1234
       SPRING_DATA_MONGODB_URI: mongodb://mongo-db:27017/prescriptions
-      JWT_SECRET: docker-compose-change-me-please-use-a-real-secret
+      JWT_SECRET: ${JWT_SECRET:-SmartClinicSuperSecretKeyForJWTSigning2024XYZ}
 
 volumes:
   mysql_data:
