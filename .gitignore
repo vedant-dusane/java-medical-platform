@@ -4,6 +4,9 @@ target/
 !**/src/main/**/target/
 !**/src/test/**/target/
 
+### Credentials — never commit these ###
+src/main/resources/application.properties
+
 ### STS ###
 .apt_generated
 .classpath
@@ -31,4 +34,7 @@ build/
 
 ### VS Code ###
 .vscode/
-Screenshots
+
+### Misc ###
+*.env
+.DS_Store

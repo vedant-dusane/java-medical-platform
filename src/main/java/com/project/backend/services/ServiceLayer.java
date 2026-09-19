@@ -17,7 +17,8 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Service – central service combining auth, validation, and coordination across entities.
+ * Central service that glues together auth, token validation, and coordination
+ * between doctors, patients, and appointments. Most controllers delegate here.
  */
 @Service
 public class ServiceLayer {

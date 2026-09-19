@@ -15,8 +15,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * TokenService
- * Handles JWT token generation, extraction, and validation.
+ * Handles everything JWT — generating tokens, pulling out the identifier,
+ * and checking whether a token belongs to a valid admin, doctor, or patient.
  */
 @Component
 public class TokenService {

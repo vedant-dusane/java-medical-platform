@@ -14,9 +14,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * DatabaseDataInitializer
- * Automatically ensures the required tables, stored procedures, and initial data exist
- * in both MySQL and MongoDB upon application startup.
+ * Runs once at startup to make sure the database is ready to go —
+ * creates the stored procedures and seeds sample data if the tables are empty.
+ * This way you can clone the project, point it at a fresh database, and it just works.
  */
 @Component
 public class DatabaseDataInitializer implements ApplicationRunner {
@@ -33,16 +33,16 @@ public class DatabaseDataInitializer implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) {
-        log.info("Checking and initializing database procedures and initial data...");
+        log.info("Running startup database checks...");
         initMySqlProcedures();
         initMySqlData();
         initMongoData();
-        log.info("Database initialization check completed.");
+        log.info("Database checks done.");
     }
 
     private void initMySqlProcedures() {
         try {
-            log.info("Creating MySQL stored procedures if not exists...");
+            log.info("Setting up stored procedures...");
 
             // Procedure 1: GetDailyAppointmentReportByDoctor
             jdbcTemplate.execute("DROP PROCEDURE IF EXISTS GetDailyAppointmentReportByDoctor");
